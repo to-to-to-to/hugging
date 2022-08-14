@@ -18,5 +18,5 @@ dependencies:
     - microsoft_text.txt
     - summarize.py
     - README.md  
-  commands:
-   -summarize : Summarizes a given piece of text
+commands:
+  -summarize : Summarizes a given piece of text
