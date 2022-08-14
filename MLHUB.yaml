@@ -14,7 +14,7 @@ dependencies:
     - transformers
   files:
     - microsoft_text.txt
-    - summarize.py
+    - summ.py
     - README.md  
 commands:
   summ : Summarizes a given piece of text
