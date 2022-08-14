@@ -9,10 +9,9 @@ meta:
   author       : Shashank Gummuluru
   url          : https://github.com/shashank-gv/summarize
 dependencies:
-  python3:
-    - argparse
   pip3:
     - pytorch
+    - argparse
     - transformers
   files:
     - microsoft_text.txt
