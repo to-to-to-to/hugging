@@ -1,0 +1,21 @@
+--- # summarization pipeline
+meta:
+  name         : summarize
+  title        : Summarization of a given piece of text
+  keywords     : python, summarization, transformers, t5
+  version      : 1.0.0
+  languages    : py
+  license      : gpl3
+  author       : Shashank Gummuluru
+  url          : https://github.com/shashank-gv/summarize
+dependencies:
+  python3:
+    - argparse
+  pip3:
+    - pytorch
+    - transformers
+  files:
+    - microsoft_text.txt
+    - summarize.py
+    - README.md  
+  commands:
