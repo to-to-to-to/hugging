@@ -17,4 +17,4 @@ dependencies:
     - summarize.py
     - README.md  
 commands:
-  -summ : Summarizes a given piece of text
+  summ : Summarizes a given piece of text
