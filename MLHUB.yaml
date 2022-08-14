@@ -19,4 +19,4 @@ dependencies:
     - summarize.py
     - README.md  
   commands:
-   -summarize: Summarizes a given piece of text
+   -summarize : Summarizes a given piece of text
