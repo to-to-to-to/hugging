@@ -41,5 +41,5 @@ summarizer = pipeline("summarization", model="t5-small", framework="pt")
 text = read_file(args.text)
 
 summarized_text = summarize_pipeline(text, summarizer=summarizer, min_length=min_length, max_length=max_length)
-print(f"Summary of {args.text} between {args.min_len} and {args.max_len} words below:\n")
+print(f"Summary of {args.text} between {min_length} and {max_length} words below:\n")
 print(summarized_text[0]['summary_text'])
