@@ -10,7 +10,7 @@ meta:
   url          : https://github.com/shashank-gv/summarize
 dependencies:
   pip3:
-    - pytorch
+    - torch
     - transformers
   files:
     - microsoft_text.txt
