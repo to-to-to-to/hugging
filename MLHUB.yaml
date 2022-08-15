@@ -1,6 +1,6 @@
 --- # summarization pipeline
 meta:
-  name         : summarize
+  name         : hugging
   title        : Summarization of a given piece of text
   keywords     : python, summarization, transformers, t5
   version      : 1.0.0
