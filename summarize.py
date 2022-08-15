@@ -37,8 +37,9 @@ if(args.max_len):
 
 # Calling it globally so we only have to call it once
 # summarizer = pipeline("summarization", model="t5-base", tokenizer="t5-base", framework="tf")
-summarizer = pipeline("summarization", model="summarizer_t5small.mdl")
+summarizer = pipeline("summarization", model="t5-small", framework="pt")
 text = read_file(args.text)
 
 summarized_text = summarize_pipeline(text, summarizer=summarizer, min_length=min_length, max_length=max_length)
-print(summarized_text)
+print(f"Summary of {args.text} between {args.min_len} and {args.max_len} words below:\n")
+print(summarized_text[0]['summary_text'])
