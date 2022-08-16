@@ -1,4 +1,3 @@
-from distutils.log import error
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from transformers import pipeline
@@ -54,7 +53,7 @@ if(not verbose_op):
     warnings.filterwarnings('ignore')
 
 if((max_length <= min_length) or (max_length - min_length) < 30):
-    error("length mismatch! please ensure that max length is at least 30 words greater than max length for a meaningful result and try again!")
+    print("length mismatch! please ensure that max length is at least 30 words greater than max length for a meaningful result and try again!")
     exit()
 
 summarizer = pipeline("summarization", model="t5-small", framework="pt")
