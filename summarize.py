@@ -4,13 +4,7 @@ from transformers import pipeline
 import argparse
 import re
 from mlhub.pkg import get_cmd_cwd
-
-
-def read_file(file_name):
-    path = f"{get_cmd_cwd()+'/'+file_name}"
-    file = open(path)
-    text = file.read()
-    return text
+import utils
 
 
 def summarize_pipeline(text, summarizer, min_length, max_length):
@@ -61,10 +55,14 @@ if((max_length <= min_length) or (max_length - min_length) < 30):
     exit()
 
 
-text_ip = read_file(args.text)
+# Validate URL
+if (utils.check_url(args.text)):
+    text_ip = utils.read_url(args.text)
+else:
+    text_ip = utils.read_file(args.text)
 text_list = re.findall(r'\w+', text_ip)
 if (len(text_list) > 1024):
-    text_ip = re.findall(r'\w+', text_ip)[:1020]
+    text_ip = re.findall(r'\w+', text_ip)[:980]
     text_ip = " ".join(text_ip)
     print("Your input text is greater than 1024 words. Results are calculated on the first 1024 words of the input. If you want more accurate results input a text file with lower than 1024 words.")
     summarizer = pipeline("summarization",model="sshleifer/distilbart-cnn-12-6",framework="pt")
