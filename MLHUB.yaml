@@ -12,9 +12,11 @@ dependencies:
   pip3:
     - torch
     - transformers
+    - trafilatura
   files:
     - microsoft_text.txt
     - summarize.py
-    - README.md  
+    - README.md
+    - utils.py  
 commands:
   summarize : Summarizes a given piece of text
