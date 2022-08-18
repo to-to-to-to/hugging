@@ -2,10 +2,14 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from transformers import pipeline
 import argparse
+import re
+from mlhub.pkg import get_cmd_cwd
+
 
 def read_file(file_name):
-    file = open(file_name)
-    text = file.readlines()
+    path = f"{get_cmd_cwd()+'/'+file_name}"
+    file = open(path)
+    text = file.read()
     return text
 
 
@@ -56,9 +60,21 @@ if((max_length <= min_length) or (max_length - min_length) < 30):
     print("length mismatch! please ensure that max length is at least 30 words greater than max length for a meaningful result and try again!")
     exit()
 
-summarizer = pipeline("summarization", model="t5-small", framework="pt")
-text = read_file(args.text)
 
-summarized_text = summarize_pipeline(text, summarizer=summarizer, min_length=min_length, max_length=max_length)
+text_ip = read_file(args.text)
+text_list = re.findall(r'\w+', text_ip)
+if (len(text_list) > 1024):
+    text_ip = re.findall(r'\w+', text_ip)[:1020]
+    text_ip = " ".join(text_ip)
+    print("Your input text is greater than 1024 words. Results are calculated on the first 1024 words of the input. If you want more accurate results input a text file with lower than 1024 words.")
+    summarizer = pipeline("summarization",model="sshleifer/distilbart-cnn-12-6",framework="pt")
+else:
+    summarizer = pipeline("summarization", model="t5-small", framework="pt")
+
+
+summarized_text = summarize_pipeline(text_ip, summarizer=summarizer, min_length=min_length, max_length=max_length)
 print(f"Summary of {args.text} between {min_length} and {max_length} words below:\n")
 print(summarized_text[0]['summary_text'])
+
+
+

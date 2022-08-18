@@ -1,4 +1,4 @@
 .DS_Store
 __pycache__/
 summarizer_t5small.mdl/
-
+sample_text.txt
