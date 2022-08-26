@@ -18,3 +18,8 @@ def read_url(url):
     pretty_str = trafilatura.extract(downloaded)
     return pretty_str
 
+def read_file_lines(file_name):
+    path = f"{file_name}"
+    with open(path) as f:
+        lines = [line.rstrip() for line in f] # ignore \n
+    return lines

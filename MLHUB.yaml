@@ -18,5 +18,8 @@ dependencies:
     - summarize.py
     - README.md
     - utils.py  
+    - sentiment.py
+    - sent_text.txt
 commands:
   summarize : Summarizes a given piece of text
+  sentiment : Provides the sentiment ((pos | neg), score) of a given piece of text
