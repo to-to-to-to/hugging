@@ -2,3 +2,4 @@
 __pycache__/
 summarizer_t5small.mdl/
 sample_text.txt
+.vscode/
