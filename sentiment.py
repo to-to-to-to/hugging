@@ -1,5 +1,5 @@
 from transformers import pipeline
-import argparse
+import argparse as ap
 import sys
 import utils
 import os
@@ -20,20 +20,22 @@ def print_sents(text, sentiments):
         print(f"{i} , {j['label']}, {j['score']}")
 
 
-parser = argparse.ArgumentParser(description=utils.descriptions["sentiment"])
-parser.add_argument('text', type=str, default=sys.stdin)
-args = parser.parse_args()
-# print(args.text)
+if __name__ == "__main__":
+    parser = ap.ArgumentParser(description=utils.descriptions["sentiment"])
+    parser.add_argument('text', type=str, default=sys.stdin)
+    args = parser.parse_args()
+    # print(args.text)
 
-try:
-    text = utils.read_file_lines(args.text)
-    # print(text)
-except FileNotFoundError:
-    text = args.text
-    # print(text)
+    try:
+        text = utils.read_file_lines(args.text)
+        # print(text)
+    except FileNotFoundError:
+        print("No file found treating input as plain text")
+        text = args.text
+        # print(text)
 
-SENT_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+    SENT_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
 
-sent_classifier = pipeline("sentiment-analysis", model=SENT_MODEL)
-sentiments = sentiment_pipeline(text, sent_classifier)
-print_sents(text, sentiments)
+    sent_classifier = pipeline("sentiment-analysis", model=SENT_MODEL)
+    sentiments = sentiment_pipeline(text, sent_classifier)
+    print_sents(text, sentiments)
