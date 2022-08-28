@@ -30,4 +30,8 @@ def read_file_lines(file_name):
 
 descriptions = {"summarize": 'summarize a given piece of text',
                 "sentiment": 'provide the sentiment ((pos | neg), score) \
-                     of a given piece of text'}
+                     of a given piece of text',
+                     "demo": 'provide a demo of the commands implemented so far' # noqa : E501
+                }
+
+commands = ["sentiment", "summarize"]

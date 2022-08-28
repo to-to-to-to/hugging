@@ -13,7 +13,7 @@ def summarize_pipeline(text, summarizer, min_length, max_length):
 
 
 if __name__ == "__main__":
-    parser = ap.ArgumentParser(description='summarize a given piece of text')
+    parser = ap.ArgumentParser(description=utils.descriptions["summarize"])
 
     parser.add_argument('text', metavar='input_text',
                         type=str,

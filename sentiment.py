@@ -5,6 +5,8 @@ import utils
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+SENT_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+
 
 def sentiment_pipeline(text, classifier):
     sentiments = classifier(text)
@@ -20,6 +22,12 @@ def print_sents(text, sentiments):
         print(f"{i} , {j['label']}, {j['score']}")
 
 
+def build_sent(text):
+    sent_classifier = pipeline("sentiment-analysis", model=SENT_MODEL)
+    sentiments = sentiment_pipeline(text, sent_classifier)
+    print_sents(text, sentiments)
+
+
 if __name__ == "__main__":
     parser = ap.ArgumentParser(description=utils.descriptions["sentiment"])
     parser.add_argument('text', type=str, default=sys.stdin)
@@ -33,9 +41,4 @@ if __name__ == "__main__":
         print("No file found treating input as plain text")
         text = args.text
         # print(text)
-
-    SENT_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
-
-    sent_classifier = pipeline("sentiment-analysis", model=SENT_MODEL)
-    sentiments = sentiment_pipeline(text, sent_classifier)
-    print_sents(text, sentiments)
+    build_sent(text)
