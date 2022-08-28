@@ -1,7 +1,7 @@
 --- # summarization pipeline
 meta:
   name         : hugging
-  title        : Summarization of a given piece of text
+  title        : implement various hugging face pipelines and models through MLHUB
   keywords     : python, summarization, transformers, t5, BERT, sentiment-analysis
   version      : 0.0.2
   languages    : py
