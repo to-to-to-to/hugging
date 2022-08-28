@@ -2,8 +2,8 @@
 meta:
   name         : hugging
   title        : Summarization of a given piece of text
-  keywords     : python, summarization, transformers, t5
-  version      : 1.0.0
+  keywords     : python, summarization, transformers, t5, BERT, sentiment-analysis
+  version      : 0.0.2
   languages    : py
   license      : gpl3
   author       : Shashank Gummuluru
