@@ -8,8 +8,12 @@ def check_url(url):
     return re.match(url_pattern, url)
 
 
-def read_file(file_name):
-    path = f"{get_cmd_cwd()+'/'+file_name}"
+def read_file(file_name, demo):
+    if demo:
+        path = file_name
+    else:
+        path = f"{get_cmd_cwd()+'/'+file_name}"
+    print(path)
     file = open(path)
     text = file.read()
     return text

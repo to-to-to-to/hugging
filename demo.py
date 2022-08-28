@@ -14,4 +14,4 @@ if(args.command == "sentiment"):
     os.system("python3 sentiment.py sent_text.txt")
 
 if(args.command == "summarize"):
-    os.system("python3 summarize.py microsoft_text.txt --min_len 50 --max_len 100") # noqa : E501
+    os.system("python3 summarize.py microsoft_text.txt --min_len 50 --max_len 100 --demo True") # noqa : E501
