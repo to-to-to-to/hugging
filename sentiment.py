@@ -28,7 +28,7 @@ def build_sent(text):
     print_sents(text, sentiments)
 
 
-if __name__ == "__main__":
+def main():
     parser = ap.ArgumentParser(description=utils.descriptions["sentiment"])
     parser.add_argument('text', type=str, default=sys.stdin)
     args = parser.parse_args()
@@ -42,3 +42,7 @@ if __name__ == "__main__":
         text = args.text
         # print(text)
     build_sent(text)
+
+
+if __name__ == "__main__":
+    main()

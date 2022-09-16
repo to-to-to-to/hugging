@@ -12,7 +12,7 @@ def summarize_pipeline(text, summarizer, min_length, max_length):
     return summarized_text
 
 
-if __name__ == "__main__":
+def parse_arguments():
     parser = ap.ArgumentParser(description=utils.descriptions["summarize"])
 
     parser.add_argument('text', metavar='input_text',
@@ -35,9 +35,14 @@ if __name__ == "__main__":
                         default=False)
 
     args = parser.parse_args()
+    return args
+
+
+def main():
     min_length = 20
     max_length = 70
     verbose_op = False
+    args = parse_arguments()
 
     if(args.verbose):
         verbose_op = True
@@ -64,7 +69,7 @@ if __name__ == "__main__":
         text_ip = utils.read_file(args.text, demo=args.demo)
     text_list = re.findall(r'\w+', text_ip)
     if (len(text_list) > 1024):
-        text_ip = re.findall(r'\w+', text_ip)[:980]
+        text_ip = re.findall(r'\w+', text_ip)[:1000]
         text_ip = " ".join(text_ip)
         print("Your input text is greater than 1024 words. Results are calculated \
             on the first 1024 words of the input. If you want more accurate \
@@ -83,3 +88,7 @@ if __name__ == "__main__":
         print(f"Summary of {args.text} between {min_length} and \
                 {max_length} words below:\n")
     print(summarized_text[0]['summary_text'])
+
+
+if __name__ == "__main__":
+    main()
