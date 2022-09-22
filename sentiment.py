@@ -14,18 +14,20 @@ def sentiment_pipeline(text, classifier):
 
 
 def print_sents(text, sentiments):
+    formatted_sents = []
     if(type(text) == str):
         list_text = []
         list_text.append(text)
         text = list_text.copy()
     for i, j in zip(text, sentiments):
-        print(f"{i} , {j['label']}, {j['score']}")
+        formatted_sents.append(f"{i},{j['label']},{j['score']}")
+    return formatted_sents
 
 
 def build_sent(text):
     sent_classifier = pipeline("sentiment-analysis", model=SENT_MODEL)
     sentiments = sentiment_pipeline(text, sent_classifier)
-    print_sents(text, sentiments)
+    return sentiments
 
 
 def main():
@@ -41,7 +43,9 @@ def main():
         print("No file found treating input as plain text")
         text = args.text
         # print(text)
-    build_sent(text)
+    sentiments = build_sent(text)
+    for i in print_sents(text, sentiments=sentiments):
+        print(i)
 
 
 if __name__ == "__main__":

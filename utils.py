@@ -31,6 +31,14 @@ def read_file_lines(file_name):
     return lines
 
 
+def print_file_lines(path):
+    sents = ""
+    with open(path) as f:
+        sents += (f.read())
+        sents += ("\n")
+    return sents
+
+
 descriptions = {"summarize": 'summarize a given piece of text',
                 "sentiment": 'provide the sentiment ((pos | neg), score) \
                               of a given piece of text',
