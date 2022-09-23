@@ -1,14 +1,13 @@
-import os
 import argparse as ap
 import re
 import utils
 from transformers import pipeline
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
 def summarize_pipeline(text, summarizer, min_length, max_length):
+    # forward pass
     summarized_text = summarizer(text, min_length=min_length,
-                                 max_length=max_length)
+                                 max_length=max_length, truncation=True)
     return summarized_text
 
 
@@ -68,9 +67,7 @@ def main():
     else:
         text_ip = utils.read_file(args.text, demo=args.demo)
     text_list = re.findall(r'\w+', text_ip)
-    if (len(text_list) > 1024):
-        text_ip = re.findall(r'\w+', text_ip)[:1000]
-        text_ip = " ".join(text_ip)
+    if (len(text_list) > 512):
         print("Your input text is greater than 1024 words. Results are calculated \
             on the first 1024 words of the input. If you want more accurate \
             results input a text file with lower than 1024 words.")
