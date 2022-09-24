@@ -1,5 +1,4 @@
 import argparse as ap
-import re
 import utils
 from transformers import pipeline
 
@@ -32,7 +31,10 @@ def parse_arguments():
     parser.add_argument('--demo',
                         type=bool,
                         default=False)
-
+    parser.add_argument('--model',
+                        type=str,
+                        default="t5-small",
+                        help="model that you want your summirzation to use (default t5-small)") # noqa
     args = parser.parse_args()
     return args
 
@@ -42,6 +44,7 @@ def main():
     max_length = 70
     verbose_op = False
     args = parse_arguments()
+    model = args.model
 
     if(args.verbose):
         verbose_op = True
@@ -66,12 +69,8 @@ def main():
         text_ip = utils.read_url(args.text)
     else:
         text_ip = utils.read_file(args.text, demo=args.demo)
-    text_list = re.findall(r'\w+', text_ip)
-    if (len(text_list) > 512):
-        print("Your input text is greater than 1024 words. Results are calculated \
-            on the first 1024 words of the input. If you want more accurate \
-            results input a text file with lower than 1024 words.")
 
+    if (model.lower() == "bert"):
         summarizer = pipeline("summarization",
                               model="sshleifer/distilbart-cnn-12-6",
                               framework="pt")
