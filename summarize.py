@@ -83,7 +83,9 @@ def main():
     if(verbose_op):
         print(f"Summary of {args.text} between {min_length} and \
                 {max_length} words below:\n")
-    print(summarized_text[0]['summary_text'])
+    sentences = utils.format_text(summarized_text[0]['summary_text'])
+    for sent in sentences:
+        print(sent)
 
 
 if __name__ == "__main__":

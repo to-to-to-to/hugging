@@ -39,6 +39,18 @@ def print_file_lines(path):
     return sents
 
 
+def format_text(text):
+    text = text.replace(" .", ". ")
+    text = text.replace(". ", ".")
+    # split text into sentences
+    sentences = text.split(".")
+    # remove empty sentences
+    sentences = [s.strip() for s in sentences if s]
+    # capitalise only first letter of each sentence
+    formatted_sents = [(sentence[0].upper() + sentence[1:] + '.') for sentence in sentences] # noqa : E501
+    return formatted_sents
+
+
 descriptions = {"summarize": 'summarize a given piece of text',
                 "sentiment": 'provide the sentiment ((pos | neg), score) \
                               of a given piece of text',
