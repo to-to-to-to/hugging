@@ -70,12 +70,17 @@ def main():
     else:
         text_ip = utils.read_file(args.text, demo=args.demo)
 
-    if (model.lower() == "bert"):
+    models = ["t5-base", "t5-small", "BART", "t5-large"]
+    if model.lower() not in models:
+        print(f"{model} is not a valid model. Please ensure model is one of {models}") # noqa : E501
+        exit(1)
+    if (model.lower() == "bart"):
         summarizer = pipeline("summarization",
                               model="sshleifer/distilbart-cnn-12-6",
                               framework="pt")
     else:
-        summarizer = pipeline("summarization", model="t5-small", framework="pt") # noqa : E501
+        model = model.lower()
+        summarizer = pipeline("summarization", model=model, framework="pt") # noqa : E501
 
     summarized_text = summarize_pipeline(text_ip, summarizer=summarizer,
                                          min_length=min_length,
