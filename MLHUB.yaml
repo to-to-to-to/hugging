@@ -3,7 +3,7 @@ meta:
   name         : hugging
   title        : implement various hugging face pipelines and models through MLHUB
   keywords     : python, summarization, transformers, t5, BERT, sentiment-analysis
-  version      : 0.0.2
+  version      : 0.0.5
   languages    : py
   license      : gpl3
   author       : Shashank Gummuluru
