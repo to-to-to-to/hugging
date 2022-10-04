@@ -45,6 +45,7 @@ def main():
     verbose_op = False
     args = parse_arguments()
     model = args.model
+    model = model.lower()
 
     if(args.verbose):
         verbose_op = True
@@ -70,17 +71,14 @@ def main():
     else:
         text_ip = utils.read_file(args.text, demo=args.demo)
 
-    models = ["t5-base", "t5-small", "BART", "t5-large"]
+    models = ["t5-base", "t5-small", "bart", "t5-large"]
     if model.lower() not in models:
         print(f"{model} is not a valid model. Please ensure model is one of {models}") # noqa : E501
         exit(1)
     if (model.lower() == "bart"):
-        summarizer = pipeline("summarization",
-                              model="sshleifer/distilbart-cnn-12-6",
-                              framework="pt")
-    else:
-        model = model.lower()
-        summarizer = pipeline("summarization", model=model, framework="pt") # noqa : E501
+        model = "sshleifer/distilbart-cnn-12-6"
+
+    summarizer = pipeline("summarization", model=model, framework="pt") # noqa : E501
 
     summarized_text = summarize_pipeline(text_ip, summarizer=summarizer,
                                          min_length=min_length,
