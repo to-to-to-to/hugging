@@ -4,6 +4,16 @@ from transformers import pipeline
 
 
 def summarize_pipeline(text, summarizer, min_length, max_length):
+    """
+    Args:
+        text (dtr): text to be summarized
+        summarizer (pipeline object): pipeline object for summarization
+        min_length (int): minimum length of summary
+        max_length (int): maximum length of summary
+
+    Returns:
+        list: list containing summary text
+    """
     # forward pass
     summarized_text = summarizer(text, min_length=min_length,
                                  max_length=max_length, truncation=True)
