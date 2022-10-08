@@ -24,6 +24,6 @@ dependencies:
     - summarise.py
 commands:
   summarize : Summarizes a given piece of text
-  summarise : Summarizes a given piece of text
+  # summarise : Summarizes a given piece of text
   sentiment : Provides the sentiment ((pos | neg), score) of a given piece of text
   demo : Provides a demo of the commands implemented so far
