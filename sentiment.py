@@ -59,7 +59,7 @@ def parse_text():
 def main():
     text = parse_text()
     sentiments = build_sent(text)
-    print(output_sent(sentiments))
+    print("{:.2f}".format(output_sent(sentiments)))
 
 
 if __name__ == "__main__":
