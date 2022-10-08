@@ -16,7 +16,7 @@ def check_url(url):
     return re.match(url_pattern, url)
 
 
-def read_file(file_name, demo):
+def read_file(file_name, demo=False):
     """read file and return the text
 
     Args:
