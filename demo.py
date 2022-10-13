@@ -30,11 +30,13 @@ if(args.command == "sentiment"):
     mlask(begin="", end="\n",
           prompt="Press Enter to display the sentiments")
     print("Analysing...")
-    sentiments = sentiment.build_sent(text)
-    formatted_sents = sentiment.print_sents(text, sentiments)
-    mlcat(title="Sentiments", text="", end="")
-    for i in formatted_sents:
-        print(i)
+    sentiments = []
+    for i in text:
+        sentiments.append((sentiment.build_sent(i)))
+    mlcat(title="Corresponding Sentiments", text="", end="")
+    for i in sentiments:
+        print(sentiment.output_sent(i))
+
 
 if(args.command == "summarize"):
     os.system("python3 summarize.py microsoft_text.txt --min_len 50 --max_len 100 --demo True") # noqa : E501
