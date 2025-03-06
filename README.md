@@ -7,7 +7,7 @@ To install, configure, and demonstrate the package:
 
 
 ```bash
-ml install   shashank-gv/hugging
+ml install   to-to-to-to/hugging
 ml configure hugging
 ml readme    hugging
 ml commands  hugging
